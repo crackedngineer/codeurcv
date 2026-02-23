@@ -17,6 +17,7 @@
 \usepackage{fancyhdr}
 \usepackage[english]{babel}
 \usepackage{tabularx}
+\usepackage{markdown}
 \input{glyphtounicode}
 
 \pagestyle{fancy}
@@ -118,7 +119,9 @@
       { ((( job.role ))) }{ ((( job.dates ))) }
       \resumeItemListStart
       ((* for item in job.achievements *))
-        \resumeItem{ ((( item ))) }
+        \begin{markdown}
+            \resumeItem{ ((( item ))) }
+        \end{markdown}
       ((* endfor *))
       \resumeItemListEnd
   ((* endfor *))

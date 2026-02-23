@@ -18,14 +18,14 @@ work:
     role: Digital Engineer
     dates: "September 2024 -- Present"
     achievements:
-      - Worked on APIs and performance for TPU training.
+      - Worked on **APIs** and performance for TPU training.
 
   - company: Fynd
     location: Bangalore, India
     role: Software Development Engineer 1
     dates: "July 2022 -- September 2024"
     achievements:
-      - Built scalable notification service.
+      - Built **scalable** notification service.
 
 projects:
   - name: QuantSoftware Toolkit
