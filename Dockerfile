@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # ---- Utilities ----
     make \
     git \
+    pandoc \
     ca-certificates \
     && python3 -m venv $VIRTUAL_ENV \
     && pip install --upgrade pip \
