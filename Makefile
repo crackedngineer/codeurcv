@@ -11,8 +11,8 @@ docker-push:
 	docker push $(IMAGE_NAME):$(TAG)
 
 compile:
-	pdflatex -interaction=nonstopmode $(TEX_FILE) || true
-	pdflatex -interaction=nonstopmode $(TEX_FILE) || true
+	mkdir -p $(dir $(TEX_FILE))
+	pdflatex -output-directory=$(dir $(TEX_FILE)) -interaction=nonstopmode $(notdir $(TEX_FILE)) || true
 	test -f $(TEX_FILE:.tex=.pdf)
 
 clean:
