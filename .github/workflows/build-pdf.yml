@@ -30,7 +30,7 @@ jobs:
         run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
       - name: Install Python deps
-        run: pip install jinja2 pyyaml markdown2
+        run: pip install jinja2 pyyaml
 
       - name: Render template
         run: python render.py

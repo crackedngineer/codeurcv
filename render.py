@@ -1,6 +1,17 @@
+from asyncio import subprocess
+
 import yaml
-import markdown2
 from jinja2 import Environment, FileSystemLoader
+
+def md_to_latex(text):
+    result = subprocess.run(
+        ["pandoc", "-f", "markdown", "-t", "latex"],
+        input=text,
+        text=True,
+        capture_output=True
+    )
+    return result.stdout.strip()
+    
 
 # Load YAML
 with open("resume.yml") as f:
@@ -9,7 +20,7 @@ with open("resume.yml") as f:
 # Formatting resume Data
 for job in data["work"]:
     job["achievements"] = [
-        markdown2.markdown(item) for item in job["achievements"]
+        md_to_latex(item) for item in job["achievements"]
     ]
 
 # Load LaTeX template
