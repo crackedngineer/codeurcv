@@ -26,6 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Mark workspace safe
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
       - name: Install Python deps
         run: pip install jinja2 pyyaml
 
