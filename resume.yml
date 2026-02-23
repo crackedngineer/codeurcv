@@ -22,10 +22,10 @@ work:
       - Worked on APIs and performance for TPU training.
       - Contributed to unified batch and streaming pipeline framework.
 
-  - company: Coursera
-    location: Mountain View, CA
-    role: Senior Software Engineer
-    dates: "Jan 2014 -- Oct 2016"
+  - company: Fynd
+    location: Bangalore, India
+    role: Software Development Engineer 1
+    dates: "July 2022 -- September 2024"
     achievements:
       - Built scalable notification service.
       - Designed recommendation infrastructure.
