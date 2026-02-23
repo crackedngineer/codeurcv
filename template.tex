@@ -82,6 +82,7 @@
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\newcommand{\resumeSubItemWithDescription}[2]{\resumeItem{\href{#2}{#1}}\vspace{-4pt}}
 
 \renewcommand{\labelitemii}{$\circ$}
 
@@ -129,8 +130,7 @@
 \section{Projects}
   \resumeSubHeadingListStart
   ((* for proj in projects *))
-    \resumeSubItem{ ((( proj.name ))) }
-      { ((( proj.description ))) }
+    \resumeSubItemWithDescription{ ((( proj.name ))) }{ ((( proj.description ))) }
   ((* endfor *))
   \resumeSubHeadingListEnd
 
