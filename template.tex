@@ -9,11 +9,11 @@
 
 % HEADER
 \begin{tabularx}{\textwidth}{X r}
-    \textbf{\Large {{ basics.name }}} & \textbf{\large {{ basics.title }}} \\
-    \multicolumn{2}{X}{ {{ basics.summary }} } \\
-    \href{mailto:{{ basics.email }}}{{ basics.email }} \,|\, 
-    \href{{ basics.website }}{{ basics.website }} \,|\, 
-    Mobile: {{ basics.phone }} & \\
+\textbf {\Large {{ basics.name }}} & \textbf {\large {{ basics.title }}} \\
+\multicolumn{2}{X}{ {{ basics.summary }} } \\
+\href {mailto:{{ basics.email }}}{{ basics.email }} \,|\, 
+\href {{ basics.website }}{{ basics.website }} \,|\, 
+Mobile: {{ basics.phone }} & \\
 \end{tabularx}
 
 \section*{Education}
@@ -36,7 +36,7 @@
 \section*{Projects}
 \begin{itemize}[leftmargin=*]
 {% for proj in projects %}
-\item \textbf{{ proj.name }}: {{ proj.description }}
+\item \textbf {{ proj.name }}: {{ proj.description }}
 {% endfor %}
 \end{itemize}
 

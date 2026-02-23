@@ -13,5 +13,5 @@ template = env.get_template("template.tex")
 output = template.render(**data)
 
 # Save final LaTeX
-with open("resume.tex", "w") as f:
+with open("output/resume.tex", "w") as f:
     f.write(output)
