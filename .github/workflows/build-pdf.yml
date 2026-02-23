@@ -42,7 +42,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git add resume.pdf resume.tex
+          git add output/*
           if git diff --cached --quiet; then
             echo "✅ No changes to commit"
           else

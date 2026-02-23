@@ -1,6 +1,6 @@
 IMAGE_NAME=ghcr.io/$(GITHUB_USER)/latex-ci
 TAG=latest
-TEX_FILE=resume.tex
+TEX_FILE=output/resume.tex
 
 .PHONY: docker-build docker-push compile clean
 
@@ -12,7 +12,7 @@ docker-push:
 
 compile:
 	pdflatex -interaction=nonstopmode $(TEX_FILE)
-	test -f resume.pdf
+	test -f $(TEX_FILE:.tex=.pdf)
 
 clean:
 	pdflatex -c $(TEX_FILE)
