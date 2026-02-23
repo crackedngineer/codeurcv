@@ -95,43 +95,55 @@
 
 %----------HEADING-----------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textbf{\href{{ basics.website }}{\Large {{ basics.name }}}} & Email: \href{mailto:{{ basics.email }}}{{ basics.email }}\\
-  \href{{ basics.website }}{{ basics.website | replace("https://","") | replace("http://","") }} & Mobile: \href{tel:{{ basics.phone }}}{{ basics.phone }} \\
+  \textbf{\href https://github.com/crackedngineer/(\Large Subhomoy Roy Choudhury)} & Email: \href{mailto:subhomoyrchoudhury@gmail.com}{subhomoyrchoudhury@gmail.com}\\
+  \href https://github.com/crackedngineer/ {github.com/crackedngineer/} & Mobile: \href{tel:+91 9163855365}{+91 9163855365} \\
 \end{tabular*}
 
 %-----------EDUCATION-----------------
 \section{Education}
   \resumeSubHeadingListStart
-  {% for edu in education %}
+  
     \resumeSubheading
-      { {{ edu.institution }} }{ {{ edu.location }} }
-      { {{ edu.degree }}; GPA: {{ edu.gpa }} }{ {{ edu.dates }} }
-  {% endfor %}
+      { Institute of Engineering and Management, Kolkata }{ West Bengal, India }
+      { Bachelor of Technology in Electronics and Communication Engineering; GPA: 3.66 (9.34/10.0) }{ Aug 2018 -- July 2022 }
+    
   \resumeSubHeadingListEnd
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
   \resumeSubHeadingListStart
-  {% for job in work %}
+  
     \resumeSubheading
-      { {{ job.company }} }{ {{ job.location }} }
-      { {{ job.role }} }{ {{ job.dates }} }
+      { Mott MacDonald }{ Bangalore, India }
+      { Digital Engineer }{ September 2024 -- Present }
       \resumeItemListStart
-      {% for item in job.achievements %}
-        \resumeItem{ {{ item }} }
-      {% endfor %}
+      
+        \resumeItem{ Worked on APIs and performance for TPU training. }
+      
       \resumeItemListEnd
-  {% endfor %}
+  
+    \resumeSubheading
+      { Fynd }{ Bangalore, India }
+      { Software Development Engineer 1 }{ July 2022 -- September 2024 }
+      \resumeItemListStart
+      
+        \resumeItem{ Built scalable notification service. }
+      
+      \resumeItemListEnd
+  
 \resumeSubHeadingListEnd
 
 
 %-----------PROJECTS-----------------
 \section{Projects}
   \resumeSubHeadingListStart
-  {% for proj in projects %}
-    \resumeSubItem{ {{ proj.name }} }
-      { {{ proj.description }} }
-  {% endfor %}
+  
+    \resumeSubItem{ QuantSoftware Toolkit }
+      { Open source Python library for financial analysis. }
+  
+    \resumeSubItem{ GitHub Visualization }
+      { D3-based Git log visualization tool. }
+  
   \resumeSubHeadingListEnd
 
 \end{document}

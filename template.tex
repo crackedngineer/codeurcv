@@ -95,43 +95,43 @@
 
 %----------HEADING-----------------
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-  \textbf{\href{{ basics.website }}{\Large {{ basics.name }}}} & Email: \href{mailto:{{ basics.email }}}{{ basics.email }}\\
-  \href{{ basics.website }}{{ basics.website | replace("https://","") | replace("http://","") }} & Mobile: \href{tel:{{ basics.phone }}}{{ basics.phone }} \\
+  \textbf{\href ((( basics.website )))(\Large ((( basics.name ))))} & Email: \href{mailto:((( basics.email )))}{((( basics.email )))}\\
+  \href ((( basics.website ))) {((( basics.website | replace("https://","") | replace("http://","") )))} & Mobile: \href{tel:((( basics.phone )))}{((( basics.phone )))} \\
 \end{tabular*}
 
 %-----------EDUCATION-----------------
 \section{Education}
   \resumeSubHeadingListStart
-  {% for edu in education %}
+  ((* for school in education *))
     \resumeSubheading
-      { {{ edu.institution }} }{ {{ edu.location }} }
-      { {{ edu.degree }}; GPA: {{ edu.gpa }} }{ {{ edu.dates }} }
-  {% endfor %}
+      { ((( school.institution ))) }{ ((( school.location ))) }
+      { ((( school.degree ))); GPA: ((( school.gpa ))) }{ ((( school.dates ))) }
+    ((* endfor *))
   \resumeSubHeadingListEnd
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
   \resumeSubHeadingListStart
-  {% for job in work %}
+  ((* for job in work *))
     \resumeSubheading
-      { {{ job.company }} }{ {{ job.location }} }
-      { {{ job.role }} }{ {{ job.dates }} }
+      { ((( job.company ))) }{ ((( job.location ))) }
+      { ((( job.role ))) }{ ((( job.dates ))) }
       \resumeItemListStart
-      {% for item in job.achievements %}
-        \resumeItem{ {{ item }} }
-      {% endfor %}
+      ((* for item in job.achievements *))
+        \resumeItem{ ((( item ))) }
+      ((* endfor *))
       \resumeItemListEnd
-  {% endfor %}
+  ((* endfor *))
 \resumeSubHeadingListEnd
 
 
 %-----------PROJECTS-----------------
 \section{Projects}
   \resumeSubHeadingListStart
-  {% for proj in projects %}
-    \resumeSubItem{ {{ proj.name }} }
-      { {{ proj.description }} }
-  {% endfor %}
+  ((* for proj in projects *))
+    \resumeSubItem{ ((( proj.name ))) }
+      { ((( proj.description ))) }
+  ((* endfor *))
   \resumeSubHeadingListEnd
 
 \end{document}
