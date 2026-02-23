@@ -12,7 +12,7 @@
 \textbf {\Large {{ basics.name }}} & \textbf {\large {{ basics.title }}} \\
 \multicolumn{2}{X}{ {{ basics.summary }} } \\
 \href {mailto:{{ basics.email }}}{{ basics.email }} \,|\, 
-\href {{ basics.website }}{{ basics.website }} \,|\, 
+\href{ {{ basics.website }} }{ {{ basics.website | replace("https://","") | replace("http://","") }} } \,|\, 
 Mobile: {{ basics.phone }} & \\
 \end{tabularx}
 
