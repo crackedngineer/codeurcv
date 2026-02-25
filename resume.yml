@@ -1,11 +1,10 @@
-basics:
-  name: Subhomoy Roy Choudhury
-  title: Software Engineer
-  email: subhomoyrchoudhury@gmail.com
-  phone: "+91 9163855365"
-  website: "https://github.com/crackedngineer/"
-  github: "github.com/crackedngineer"
-  linkedin: "linkedin.com/in/subhomoy-roy-choudhury"
+name: Subhomoy Roy Choudhury
+title: Software Engineer
+email: subhomoyrchoudhury@gmail.com
+phone: "+91 9163855365"
+website: "https://github.com/crackedngineer/"
+github: "github.com/crackedngineer"
+linkedin: "linkedin.com/in/subhomoy-roy-choudhury"
 
 education:
   - institution: Institute of Engineering and Management, Kolkata
