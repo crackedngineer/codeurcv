@@ -24,15 +24,14 @@ work:
       - Working on **Plural** ([_https://www.plural.sh/_](https://www.plural.sh/)) using Terraform.
       - Worked on the Kubernetes operator using **Golang** responsible for maintaining the creation of project tiles inside the platform.
       - Developed the end-to-end automation of the project and namespace creation system from Service Now to Plural. Reduced the SLAs for the requests to **80%**.
-      - "**Technologies** :- Python, Golang, Terraform, K8s, K8s operator, Azure Blob, Azure PostgresDB, Storage Accounts etc."
     technologies: 
-      - "Python"
-      - "Golang"
-      - "Terraform"
-      - "Kubernetes"
-      - "Azure Blob"
-      - "Azure PostgresDB"
-      - "Storage Accounts"
+      - Python
+      - Golang
+      - Terraform
+      - Kubernetes
+      - Azure Blob
+      - Azure PostgresDB
+      - Storage Accounts
 
   - company: Fynd
     location: Bangalore, India
@@ -45,19 +44,48 @@ work:
       - Developed the **product ingestion pipelines** using **Apache Kafka** where any seller can import pre-existing catalogs in very minimal time and with minimum configurations.
       - Contributed to the Front-end development of respective features and the overall optimisation of the project, resulting in **30% improvement in performance**.
     technologies:
-      - "Python"
-      - "NodeJS"
-      - "NextJS"
-      - "Kafka"
-      - "Postgres"
-      - "MongoDB"
-      - "Redis"
-      - "Nginx Ingress"
+      - Python
+      - NodeJS
+      - NextJS
+      - Kafka
+      - Postgres
+      - MongoDB
+      - Redis
+      - Nginx Ingress
 
 projects:
   - name: iLoveGithub
-    link: ""
-    description: Open source Python library for financial analysis.
-  - name: GitHub Visualization
-    link: ""
-    description: D3-based Git log visualization tool.
+    description: A curated collection of magical tools built around GitHub — open a repo in VS Code, visualize it, generate AI-powered summaries, convert it to a podcast, and so much more. 
+    link: "https://github.com/crackedngineer/iLoveGithub"
+    technologies: 
+      - NextJS
+      - Python
+      - Supabase Auth
+      - Docker
+      - Release Please
+      
+  - name: iLoveGithub Extension
+    description: A Chrome extension that provides quick access to iLoveGithub's features directly from the browser toolbar.
+    link: "https://github.com/crackedngineer/iLoveGithub-extension"
+    technologies: 
+      - Typescript
+      - Webpack
+      - Github Actions
+
+  - name: linkplant
+    description: Github Action to effortlessly create and deploy your own one-link website on GitHub. A free Linktree alternative.
+    link: "https://github.com/crackedngineer/linkplant"
+    technologies:
+      - Python 
+      - Jinja
+      - Github Action
+
+  - name: Proxmox Homelab
+    link: "https://github.com/crackedngineer/homelab-infrastructure"
+    description: Set up a Homelab using Proxmox (Type 1 Hypervisor) inside aLenovo MiniPC.
+    technologies:
+      - Terraform
+      - Docker
+      - argocd
+      - Tailscale
+      - Kubernetes

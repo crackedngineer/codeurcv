@@ -31,6 +31,7 @@
 \addtolength{\textwidth}{1in}
 \addtolength{\topmargin}{-.5in}
 \addtolength{\textheight}{1.0in}
+\setlength{\footskip}{12pt}
 
 \urlstyle{same}
 
@@ -68,24 +69,24 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-1pt}\item
+  \vspace{-2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-5pt}
+    \end{tabular*}\vspace{-7pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-5pt}
+    \end{tabular*}\vspace{-7pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
 
 \renewcommand{\labelitemii}{$\circ$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
@@ -93,6 +94,14 @@
 \newcommand{\technologies}[1]{
 \noindent\textbf{Technologies:} #1
 }
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
 \begin{document}
 
 %----------HEADING-----------------
@@ -117,7 +126,7 @@
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
-%   \resumeSubHeadingListStart
+  \resumeSubHeadingListStart
   ((* for job in work *))
     \resumeSubheading
       { ((( job.company ))) }{ ((( job.location ))) }
@@ -129,15 +138,20 @@
       \resumeItem{ \technologies{((( job.technologies | join(", ") ))) } }
       \resumeItemListEnd
   ((* endfor *))
-% \resumeSubHeadingListEnd
+\resumeSubHeadingListEnd
 
 
 %-----------PROJECTS-----------------
 \section{Projects}
-  \resumeSubHeadingListStart
-  ((* for proj in projects *))
-    \resumeItem{((* if proj.link *))\href{((( proj.link )))}{((( proj.link )))} ((* endif *))\textbf{((( proj.name )))}: ((( proj.description )))}
-  ((* endfor *))
-  \resumeSubHeadingListEnd
+\resumeSubHeadingListStart
+((* for proj in projects *))
+  \resumeProjectHeading
+    {\textbf{ ((( proj.name ))) }((* if proj.technologies *)) $|$ \emph{((( proj.technologies | join(', ') )))}((* endif *))}
+    {June 2020 -- Present}
+  \resumeItemListStart
+    \resumeItem{((( proj.description )))}
+  \resumeItemListEnd
+((* endfor *))
+\resumeSubHeadingListEnd
 
 \end{document}
