@@ -31,6 +31,7 @@
 \addtolength{\textwidth}{1in}
 \addtolength{\topmargin}{-.5in}
 \addtolength{\textheight}{1.0in}
+\setlength{\footskip}{12pt}
 
 \urlstyle{same}
 
@@ -68,24 +69,24 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-1pt}\item
+  \vspace{-2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-5pt}
+    \end{tabular*}\vspace{-7pt}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-5pt}
+    \end{tabular*}\vspace{-7pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
 
 \renewcommand{\labelitemii}{$\circ$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
@@ -93,6 +94,14 @@
 \newcommand{\technologies}[1]{
 \noindent\textbf{Technologies:} #1
 }
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
 \begin{document}
 
 %----------HEADING-----------------
@@ -117,7 +126,7 @@
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
-%   \resumeSubHeadingListStart
+  \resumeSubHeadingListStart
   
     \resumeSubheading
       { Mott MacDonald }{ Bangalore, India }
@@ -137,9 +146,6 @@ maintaining the creation of project tiles inside the platform. }
             \resumeItem{ Developed the end-to-end automation of the project and namespace
 creation system from Service Now to Plural. Reduced the SLAs for the
 requests to \textbf{80\%}. }
-      
-            \resumeItem{ \textbf{Technologies} :- Python, Golang, Terraform, K8s, K8s operator,
-Azure Blob, Azure PostgresDB, Storage Accounts etc. }
       
       \resumeItem{ \technologies{Python, Golang, Terraform, Kubernetes, Azure Blob, Azure PostgresDB, Storage Accounts } }
       \resumeItemListEnd
@@ -172,17 +178,41 @@ improvement in performance}. }
       \resumeItem{ \technologies{Python, NodeJS, NextJS, Kafka, Postgres, MongoDB, Redis, Nginx Ingress } }
       \resumeItemListEnd
   
-% \resumeSubHeadingListEnd
+\resumeSubHeadingListEnd
 
 
 %-----------PROJECTS-----------------
 \section{Projects}
-  \resumeSubHeadingListStart
-  
-    \resumeItem{\textbf{iLoveGithub}: Open source Python library for financial analysis.}
-  
-    \resumeItem{\textbf{GitHub Visualization}: D3-based Git log visualization tool.}
-  
-  \resumeSubHeadingListEnd
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\textbf{ iLoveGithub } $|$ \emph{NextJS, Python, Supabase Auth, Docker, Release Please}}
+    {June 2020 -- Present}
+  \resumeItemListStart
+    \resumeItem{A curated collection of magical tools built around GitHub — open a repo in VS Code, visualize it, generate AI-powered summaries, convert it to a podcast, and so much more.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{ iLoveGithub Extension } $|$ \emph{Typescript, Webpack, Github Actions}}
+    {June 2020 -- Present}
+  \resumeItemListStart
+    \resumeItem{A Chrome extension that provides quick access to iLoveGithub's features directly from the browser toolbar.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{ linkplant } $|$ \emph{Python, Jinja, Github Action}}
+    {June 2020 -- Present}
+  \resumeItemListStart
+    \resumeItem{Github Action to effortlessly create and deploy your own one-link website on GitHub. A free Linktree alternative.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{ Proxmox Homelab } $|$ \emph{Terraform, Docker, argocd, Tailscale, Kubernetes}}
+    {June 2020 -- Present}
+  \resumeItemListStart
+    \resumeItem{Set up a Homelab using Proxmox (Type 1 Hypervisor) inside aLenovo MiniPC.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
 
 \end{document}
