@@ -90,7 +90,9 @@
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
-
+\newcommand{\technologies}[1]{
+\noindent\textbf{Technologies:} #1
+}
 \begin{document}
 
 %----------HEADING-----------------
@@ -115,7 +117,7 @@
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
-  \resumeSubHeadingListStart
+%   \resumeSubHeadingListStart
   ((* for job in work *))
     \resumeSubheading
       { ((( job.company ))) }{ ((( job.location ))) }
@@ -124,9 +126,10 @@
       ((* for item in job.achievements *))
             \resumeItem{ ((( item | safe ))) }
       ((* endfor *))
+      \resumeItem{ \technologies{((( job.technologies | join(", ") ))) } }
       \resumeItemListEnd
   ((* endfor *))
-\resumeSubHeadingListEnd
+% \resumeSubHeadingListEnd
 
 
 %-----------PROJECTS-----------------

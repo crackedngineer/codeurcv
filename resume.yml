@@ -11,7 +11,7 @@ education:
   - institution: Institute of Engineering and Management, Kolkata
     location: West Bengal, India
     degree: Bachelor of Technology in Electronics and Communication
-    gpa: "3.66 (9.34/10.0)"
+    gpa: "3.74 (9.34/10.0)"
     dates: "Aug 2018 -- July 2022"
 
 work:
@@ -20,17 +20,42 @@ work:
     role: Digital Engineer
     dates: "September 2024 -- Present"
     achievements:
-      - Worked on **APIs** and performance for TPU training.
+      - Currently working with the **Platform** team to maintain their DevOps Platform.
+      - Working on **Plural** ([_https://www.plural.sh/_](https://www.plural.sh/)) using Terraform.
+      - Worked on the Kubernetes operator using **Golang** responsible for maintaining the creation of project tiles inside the platform.
+      - Developed the end-to-end automation of the project and namespace creation system from Service Now to Plural. Reduced the SLAs for the requests to **80%**.
+      - "**Technologies** :- Python, Golang, Terraform, K8s, K8s operator, Azure Blob, Azure PostgresDB, Storage Accounts etc."
+    technologies: 
+      - "Python"
+      - "Golang"
+      - "Terraform"
+      - "Kubernetes"
+      - "Azure Blob"
+      - "Azure PostgresDB"
+      - "Storage Accounts"
 
   - company: Fynd
     location: Bangalore, India
     role: Software Development Engineer 1
     dates: "July 2022 -- September 2024"
     achievements:
-      - Built **scalable** notification service.
+      - "**Platform Core Catalog Service** - Directly responsible for maintaining Microservices which supported sellers in managing product catalogs and inventory for the B2B business JioMart Partners built on top of Fynd Platform."
+      - Contributed significantly to building a new product **Catalog.Cloud** from the ground up. Made substantial contributions from its conceptualization to full-fledged implementation.
+      - Developed **RBAC** which powers the **authentication** and **authorization** system assigning the user with custom roles
+      - Developed the **product ingestion pipelines** using **Apache Kafka** where any seller can import pre-existing catalogs in very minimal time and with minimum configurations.
+      - Contributed to the Front-end development of respective features and the overall optimisation of the project, resulting in **30% improvement in performance**.
+    technologies:
+      - "Python"
+      - "NodeJS"
+      - "NextJS"
+      - "Kafka"
+      - "Postgres"
+      - "MongoDB"
+      - "Redis"
+      - "Nginx Ingress"
 
 projects:
-  - name: QuantSoftware Toolkit
+  - name: iLoveGithub
     link: ""
     description: Open source Python library for financial analysis.
   - name: GitHub Visualization
