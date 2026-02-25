@@ -11,7 +11,12 @@ def md_to_latex(text):
         capture_output=True
     )
     return result.stdout.strip()
-    
+
+def regex_replace(s, find, replace):
+    """A non-optimal implementation of a regex filter"""
+    # Use re.sub for regex replacement.
+    # The 'r' prefix ensures raw strings for correct backslash handling.
+    return re.sub(r"{}".format(find), r"{}".format(replace), s)    
 
 # Load YAML
 with open("resume.yml") as f:
@@ -22,12 +27,10 @@ for job in data["work"]:
     job["achievements"] = [
         md_to_latex(item) for item in job["achievements"]
     ]
-    
-def regex_replace(s, find, replace):
-    """A non-optimal implementation of a regex filter"""
-    # Use re.sub for regex replacement.
-    # The 'r' prefix ensures raw strings for correct backslash handling.
-    return re.sub(r"{}".format(find), r"{}".format(replace), s)
+for project in data["projects"]:
+    project["description"] = [
+        md_to_latex(item) for item in project["description"]
+    ]
 
 # Load LaTeX template
 env = Environment(

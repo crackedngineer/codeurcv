@@ -55,9 +55,9 @@ work:
 projects:
   - name: iLoveGithub
     description: 
-      - Architected and built a scalable backend platform in Python to transform GitHub repositories into AI-powered insights and developer utilities.
-      - Designed RESTful services, authentication (Supabase), and containerized workloads using Docker for reproducible deployments.
-      - Implemented automated release and CI workflows to support continuous delivery and extensible system design.
+      - "**Architected** and **built** a scalable backend platform in Python to transform GitHub repositories into AI-powered insights and developer utilities."
+      - "**Designed** RESTful services, authentication (Supabase), and containerized workloads using Docker for reproducible deployments."
+      - "**Implemented** automated release and CI workflows to support continuous delivery and extensible system design."
     link: "https://github.com/crackedngineer/iLoveGithub"
     dates: "May 2025 -- Present"
     technologies: 
@@ -68,10 +68,10 @@ projects:
       - CI/CD
       
   - name: iLoveGithub Extension
-    description: 
-      - Developed a TypeScript-based Chrome extension integrating securely with backend APIs for real-time GitHub insights.
-      - Designed client–server communication patterns with secure token handling and API consumption.
-      - Automated build and release workflows using GitHub Actions.
+    description:
+      - "**Built** a TypeScript-based Chrome extension integrating securely with backend APIs to deliver real-time GitHub insights."
+      - "**Architected** secure client–server communication with robust token handling and efficient API consumption."
+      - "**Implemented** CI/CD automation using GitHub Actions to streamline build and release workflows."
     link: "https://github.com/crackedngineer/iLoveGithub-extension"
     dates: "September 2025 -- Present"
     technologies: 
@@ -82,9 +82,9 @@ projects:
 
   - name: linkplant
     description: 
-      - Built a GitHub Action to automate static site generation and deployment using Python and Jinja templating.
-      - Designed CI/CD workflows enabling zero-infrastructure hosting through GitHub-native runners.
-      - Abstracted deployment logic into reusable automation pipelines to reduce manual configuration.
+      - "**Built** a GitHub Action to automate static site generation and deployment using Python and Jinja templating."
+      - "**Designed** CI/CD workflows enabling zero-infrastructure hosting through GitHub-native runners."
+      - "**Abstracted** deployment logic into reusable automation pipelines to reduce manual configuration."
     link: "https://github.com/crackedngineer/linkplant"
     dates: "November 2025 -- Present"
     technologies:
@@ -95,9 +95,9 @@ projects:
   - name: Proxmox Homelab
     link: "https://github.com/crackedngineer/homelab-infrastructure"
     description: 
-      - Designed and operated production-like infrastructure using Proxmox with Infrastructure-as-Code principles (Terraform).
-      - Deployed and managed Kubernetes clusters with GitOps workflows using ArgoCD.
-      - Implemented containerized workloads, secure networking (Tailscale), and cluster-level automation.
+      - "**Designed** and **operated** production-like infrastructure using Proxmox with Infrastructure-as-Code principles (Terraform)."
+      - "**Deployed** and **managed** Kubernetes clusters with GitOps workflows using ArgoCD."
+      - "**Implemented** containerized workloads, secure networking (Tailscale), and cluster-level automation."
     dates: "May 2023 -- Present"
     technologies:
       - Terraform
