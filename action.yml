@@ -1,0 +1,64 @@
+name: Code Your CV
+description: "GitHub Action to render and compile a LaTeX resume template"
+author: "crackedngineer"
+
+inputs:
+  out-dir:
+    description: "output path for the generated CV"
+    required: false
+    default: "output"
+
+  file-name:
+    description: "File Path for the CV Config YAML file"
+    required: false
+    default: "config.yml"
+
+  commit-message:
+    description: "Commit message for generated files"
+    required: false
+    default: "chore(pdf): update generated files"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Mark workspace safe
+      shell: bash
+      run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+    - name: Install pdfLaTeX
+      shell: bash
+      run: sudo apt-get update && sudo apt-get install -y texlive-xetex
+
+    - name: Install Python deps
+      shell: bash
+      run: pip install -r "${{ github.action_path }}/src/requirements.txt"
+
+    - name: Compile LaTeX
+      shell: bash
+      run: |
+        cd "${{ github.action_path }}"
+        chmod +x build.sh
+        FILE_NAME="${{ inputs.file-name }}" \
+        OUT_DIR="${{ inputs.out-dir }}" \
+        ./build.sh
+      
+
+    - name: Configure Git
+      shell: bash
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Commit changes
+      shell: bash
+      run: |
+        git add ${{ inputs.output-pdf }} ${{ inputs.output-tex }}
+        if git diff --cached --quiet; then
+          echo "✅ No changes to commit"
+        else
+          git commit -m "${{ inputs.commit-message }}"
+          git push
+        fi
