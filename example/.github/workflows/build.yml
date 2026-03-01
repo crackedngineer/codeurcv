@@ -1,0 +1,21 @@
+name: Build Your CV
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/OWNER/latex-ci:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: crackedngineer/resume@v0.0.1
+        with:
+          out-dir: "output"
+          file-name: "config.yml"
