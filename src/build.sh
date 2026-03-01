@@ -22,7 +22,7 @@ mkdir -p "$OUT_DIR"
 # ==============================
 
 python "$(dirname "$0")/render.py" \
-  --config "$CONFIG_FILE" \
+  -f "$CONFIG_FILE" \
   --out_dir "$OUT_DIR"
 
 echo "✅ Render completed"
