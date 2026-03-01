@@ -30,7 +30,7 @@ runs:
 
     - name: Install pdfLaTeX
       shell: bash
-      run: | 
+      run: |
         sudo apt-get update && sudo apt-get install -y --no-install-recommends \
         texlive-latex-base \
         texlive-latex-recommended \
@@ -46,11 +46,10 @@ runs:
     - name: Compile LaTeX
       shell: bash
       run: |
-        cd "${{ github.action_path }}/src"
-        chmod +x build.sh
-        FILE_NAME="${{ inputs.file-name }}" \
-        OUT_DIR="${{ inputs.out-dir }}" \
-        ./build.sh      
+        chmod +x "${{ github.action_path }}/src/build.sh"
+        "${{ github.action_path }}/src/build.sh" \
+        "${{ github.workspace }}/${{ inputs.file-name }}" \
+        "${{ github.workspace }}/${{ inputs.out-dir }}"
 
     - name: Configure Git
       shell: bash
