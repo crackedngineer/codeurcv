@@ -4,8 +4,10 @@ import yaml
 import argparse
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
-from constants import TEMPLATE_DIR, DEFAULT_CONFIG_FILE
+from constants import DEFAULT_CONFIG_FILE
 
+BASE_DIR = Path(__file__).resolve().parent
+TEMPLATES_DIR = BASE_DIR / "templates"
 
 def md_to_latex(text):
     result = subprocess.run(
@@ -24,8 +26,6 @@ def regex_replace(s, find, replace):
     return re.sub(r"{}".format(find), r"{}".format(replace), s)
 
 def fetch_template(type: str = "minimalist"):
-    BASE_DIR = Path(__file__).resolve().parent
-    TEMPLATES_DIR = BASE_DIR / "templates"
     template_path = TEMPLATES_DIR / f"{type}.tex"
     if not template_path.exists():
         raise FileNotFoundError(f"Template file not found: {template_path}")
@@ -83,7 +83,7 @@ def main():
 
     # Load LaTeX template
     env = Environment(
-        loader=FileSystemLoader(TEMPLATE_DIR),
+        loader=FileSystemLoader(TEMPLATES_DIR),
         block_start_string="((*",
         block_end_string="*))",
         variable_start_string="(((",
