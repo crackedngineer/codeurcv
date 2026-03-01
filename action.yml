@@ -48,8 +48,8 @@ runs:
       run: |
         chmod +x "${{ github.action_path }}/src/build.sh"
         "${{ github.action_path }}/src/build.sh" \
-        "${{ github.workspace }}/${{ inputs.file-name }}" \
-        "${{ github.workspace }}/${{ inputs.out-dir }}"
+        "${{ github.workspace }}/${{ inputs.out-dir }}" \
+        "${{ github.workspace }}/${{ inputs.file-name }}"
 
     - name: Configure Git
       shell: bash
