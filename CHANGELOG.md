@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.1.1...codeurcv-v0.2.0) (2026-03-04)
+
+
+### Features
+
+* implement dependency checker and update version to 0.1.1 ([2c83dc2](https://github.com/crackedngineer/codeurcv/commit/2c83dc2f28879e9b8feb0a27f93b79d44cca7356))
+
 ## [0.1.1](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.1.0...codeurcv-v0.1.1) (2026-03-04)
 
 
