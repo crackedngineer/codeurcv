@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.1.0...codeurcv-v0.1.1) (2026-03-04)
+
+
+### Bug Fixes
+
+* update codeurcv version to 0.1.0 and adjust package configuration ([877cd54](https://github.com/crackedngineer/codeurcv/commit/877cd54c3ebf3d3a92c01b53c7b624c9b79497bc))
+
 ## [0.1.0](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.0.1...codeurcv-v0.1.0) (2026-03-04)
 
 
