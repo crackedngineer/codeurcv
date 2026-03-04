@@ -1,3 +1,19 @@
+out.txt
+test.py
+__pycache__/
+
+venv
 .venv
 
-.vscode
+build/*
+dist
+
+*.egg-info
+.tox-info.json
+
+*.log
+
+report/*
+config.ini
+
+Pipfile.*
