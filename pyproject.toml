@@ -33,8 +33,14 @@ packages = [
     { include = "codeurcv", from = "src" },
 ]
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/codeurcv"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.poetry.scripts]
-codeurcv = "src.codeurcv.__main__:main"
+codeurcv = "codeurcv.__main__:app"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
