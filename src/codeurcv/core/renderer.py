@@ -1,34 +1,25 @@
 import yaml
-import shutil
 import logging
 import subprocess
 from pathlib import Path
 from datetime import datetime
-from rich.console import Console
 
 from codeurcv.core.template_loader import TemplateEngine
 from codeurcv.core.logger import setup_logger
 from codeurcv.core.plugin_loader import load_builtin_plugins
 from codeurcv.core.schema import ResumeConfig
-
-console = Console()
-
+from codeurcv.core.settings import console
+from codeurcv.core.dependency_checker import check_dependencies
 
 class ResumeRenderer:
     def __init__(self):
         self.plugins = load_builtin_plugins()
-        self._check_dependencies()
+        check_dependencies()
         log_dir = Path("logs")
         log_dir.mkdir(exist_ok=True)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.log_file = log_dir / f"codeurcv_{timestamp}.log"
         self.logger = setup_logger(debug=False, log_file=self.log_file)
-
-    @staticmethod
-    def _check_dependencies():
-        for tool in ("pandoc", "pdflatex"):
-            if shutil.which(tool) is None:
-                raise RuntimeError(f"{tool} is not installed or not in PATH.")
 
     def render(self, config_path: Path, output_dir: Path):
         console.print("\n[bold green]🚀 Building your resume...[/bold green]\n")
