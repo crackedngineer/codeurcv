@@ -17,3 +17,5 @@ report/*
 config.ini
 
 Pipfile.*
+
+output/*

@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from codeurcv.core.constants import DEFAULT_TEMPLATE
 
@@ -51,3 +51,8 @@ class ResumeConfig(BaseModel):
     work: List[Job] = Field(default_factory=list)
     projects: List[Project] = Field(default_factory=list)
     skills: List[Skill] = Field(default_factory=list)
+
+    @field_validator("filename")
+    @classmethod
+    def strip_pdf_extension(cls, v: str) -> str:
+        return v.removesuffix(".pdf")

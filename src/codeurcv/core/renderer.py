@@ -1,3 +1,5 @@
+import tempfile
+import shutil
 import yaml
 import logging
 import subprocess
@@ -58,12 +60,16 @@ class ResumeRenderer:
             )
 
             output_dir.mkdir(parents=True, exist_ok=True)
-            tex_file = output_dir / f"{config.filename}.tex"
-            tex_file.write_text(plugin.postprocess(rendered_tex))
+            with tempfile.TemporaryDirectory() as tmpdir:
+                tmp_path = Path(tmpdir)
+                tex_file = tmp_path / f"{config.filename}.tex"
+                tex_file.write_text(plugin.postprocess(rendered_tex))
 
-            # STEP 5
-            console.print("\n📄 Generating PDF...\n")
-            self._generate_pdf(tex_file, output_dir)
+                self._generate_pdf(tex_file, tmp_path)
+
+                final_pdf = output_dir / f"{config.filename}.pdf"
+                shutil.copy(tmp_path / f"{config.filename}.pdf", final_pdf)
+
 
             console.print("\n[bold green]✔ PDF generated[/bold green]\n")
             console.print("[bold green]🎉 Done![/bold green]")
