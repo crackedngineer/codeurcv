@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.2.0...codeurcv-v0.3.0) (2026-03-04)
+
+
+### Features
+
+* enhance PDF generation by using temporary directory and add filename validation ([a8d5331](https://github.com/crackedngineer/codeurcv/commit/a8d533154c9c99061733136238d3d9ef845eefa5))
+
 ## [0.2.0](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.1.1...codeurcv-v0.2.0) (2026-03-04)
 
 
