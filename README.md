@@ -114,42 +114,6 @@ pdflatex is the LaTeX engine used to render the final PDF.
 
 ---
 
-## ⚙️ GitHub Action
-
-Automate your resume build on every push — the PDF is always up to date in your repository.
-
-```yaml
-# .github/workflows/resume.yml
-name: Build Resume
-
-on:
-  push:
-    paths:
-      - "resume.yml"
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Build Resume
-        uses: crackedngineer/codeurcv@v1
-        with:
-          input: resume.yml
-          output: resume.pdf
-
-      - name: Commit PDF
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add resume.pdf
-          git commit -m "chore: update resume" || echo "No changes"
-          git push
-```
-
----
-
 ## 🖼️ Templates
 
 | Name | Best For |
@@ -168,6 +132,21 @@ codeurcv generate resume.yml --template minimalist
 ## 📖 Local Setup
 
 See [SETUP.md](SETUP.md) for full developer setup instructions.
+
+---
+
+## ⚡ GitHub Action
+
+Automate resume generation on every push using the official GitHub Action.
+
+```yaml
+- uses: crackedngineer/codeurcv-action@v1
+  with:
+    file-name: config.yml
+    out-dir: output
+```
+
+→ [codeurcv-action on GitHub](https://github.com/crackedngineer/codeurcv-action) · [View on Marketplace](https://github.com/marketplace/actions/codeurcv-action)
 
 ---
 
