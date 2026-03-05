@@ -106,12 +106,12 @@
 
 %----------HEADING-----------------
 \begin{center}
-    {\LARGE \textbf{((( basic_details.name )))}} \\[4pt]
+    {\LARGE \textbf{\VAR{basic_details.name}}} \\[4pt]
     \normalsize
-    \href{mailto:((( basic_details.email )))}{((( basic_details.email )))} $|$ 
-    \href{tel:((( basic_details.phone )))}{((( basic_details.phone )))} $|$ 
-    \href{((( "https://www." + basic_details.github )))}{((( basic_details.github )))} $|$ 
-    \href{((( "https://www." + basic_details.linkedin )))}{((( basic_details.linkedin )))}
+    \href{mailto:\VAR{basic_details.email}}{\VAR{basic_details.email}} $|$ 
+    \href{tel:\VAR{basic_details.phone}}{\VAR{basic_details.phone}} $|$ 
+    \href{\VAR{basic_details.github}}{\VAR{basic_details.github}} $|$ 
+    \href{\VAR{basic_details.linkedin}}{\VAR{basic_details.linkedin}}
 
 \end{center}
 
@@ -119,60 +119,60 @@
 \section{Summary}
 \resumeSubHeadingListStart
   \item\small
-    ((( summary | safe ))) \\
+    {\VAR{summary}}
 \resumeSubHeadingListEnd
 
 %-----------EDUCATION-----------------
 \section{Education}
   \resumeSubHeadingListStart
-  ((* for school in education *))
+  \BLOCK{for school in education}
     \resumeSubheading
-      { ((( school.institution ))) }{ ((( school.location ))) }
-      { ((( school.degree ))); GPA: ((( school.gpa ))) }{ ((( school.year | string ))) }
-    ((* endfor *))
+      { {\VAR{school.institution}} }{ {\VAR{school.location}} }
+      { {\VAR{school.degree}}; GPA: {\VAR{school.gpa}} }{ {\VAR{school.year | string}} }
+    \BLOCK{endfor}
   \resumeSubHeadingListEnd
 
 %-----------EXPERIENCE-----------------
 \section{Experience}
   \resumeSubHeadingListStart
-  ((* for job in work *))
+  \BLOCK{for job in work}
     \resumeSubheading
-      { ((( job.company ))) }{ ((( job.location ))) }
-      { ((( job.role ))) }{ ((( job.start ))) - ((( job.end ))) }
+      { {\VAR{job.company}} }{ {\VAR{job.location}} }
+      { {\VAR{job.role}} }{ {\VAR{job.start}} - {\VAR{job.end}} }
       \resumeItemListStart
-      ((* for item in job.achievements *))
-            \resumeItem{ ((( item | safe ))) }
-      ((* endfor *))
-      \resumeItem{ \technologies{((( job.technologies | join(", ") ))) } }
+      \BLOCK{for item in job.achievements}
+            \resumeItem{ {\VAR{item | safe}} }
+      \BLOCK{endfor}
+      \resumeItem{ \technologies{\VAR{job.technologies | join(", ")}} }
       \resumeItemListEnd
-  ((* endfor *))
+  \BLOCK{endfor}
 \resumeSubHeadingListEnd
 
 
 %-----------PROJECTS-----------------
 \section{Projects}
 \resumeSubHeadingListStart
-((* for proj in projects *))
+\BLOCK{for proj in projects}
   \resumeProjectHeading
-    {\href{ ((( proj.link ))) }{ \textbf{((( proj.name )))}}((* if proj.technologies *)) $|$ \emph{((( proj.technologies | join(', ') )))}((* endif *))}
-    {((( proj.start ))) - ((( proj.end )))}
+    {\href{ {\VAR{proj.link}} }{ \textbf{\VAR{proj.name}} }((* if proj.technologies *)) $|$ \emph{{\VAR{proj.technologies | join(', ')}}}((* endif *))}
+    { {\VAR{proj.start}} - {\VAR{proj.end}} }
   \resumeItemListStart
-    ((* for item in proj.description *))
-    \resumeItem{((( item | safe )))}
-    ((* endfor *))
+    \BLOCK{for item in proj.description}
+    \resumeItem{ {\VAR{item | safe}} }
+    \BLOCK{endfor}
   \resumeItemListEnd
-((* endfor *))
+\BLOCK{endfor}
 \resumeSubHeadingListEnd
 
 %-----------TECHNICAL SKILLS-----------------
 \section{Technical Skills}
 \resumeSubHeadingListStart
-((* for skill in skills *))
+\BLOCK{for skill in skills}
   \item\small 
   \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r} 
-    \textbf{ ((( skill.category|capitalize )))}: {((( skill.featured | join(", ") )))} \\
+    \textbf{ {\VAR{skill.category|capitalize}} }: { {\VAR{skill.featured | join(", ")}} } \\
   \end{tabular*}\vspace{-7pt}
-((* endfor *))
+\BLOCK{endfor}
 \resumeSubHeadingListEnd
 
 \end{document}

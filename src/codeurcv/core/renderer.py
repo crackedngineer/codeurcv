@@ -11,7 +11,7 @@ from codeurcv.core.plugin_loader import load_builtin_plugins
 from codeurcv.core.schema import ResumeConfig
 from codeurcv.core.settings import console
 from codeurcv.core.dependency_checker import check_dependencies
-from codeurcv.core.constants import DEFAULT_OUTPUT_FILENAME
+from codeurcv.core.constants import DEFAULT_OUTPUT_FILENAME, DEFAULT_TEMPLATE
 from codeurcv.core.config_loader import load_config
 
 class ResumeRenderer:
@@ -24,7 +24,7 @@ class ResumeRenderer:
         self.log_file = log_dir / f"codeurcv_{timestamp}.log"
         self.logger = setup_logger(debug=False, log_file=self.log_file)
 
-    def render(self, config_path: Path, output_dir: Path, out_filename: str = DEFAULT_OUTPUT_FILENAME, template: str = None):
+    def render(self, config_path: Path, output_dir: Path, out_filename: str = DEFAULT_OUTPUT_FILENAME, template: str = DEFAULT_TEMPLATE):
         console.print("\n[bold green]🚀 Building your resume...[/bold green]\n")
 
         try:
