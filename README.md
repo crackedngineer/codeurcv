@@ -142,7 +142,7 @@ Automate resume generation on every push using the official GitHub Action.
 ```yaml
 - uses: crackedngineer/codeurcv-action@v1
   with:
-    file-name: config.yml
+    config-path: config.yml
     out-dir: output
 ```
 
