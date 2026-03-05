@@ -1,6 +1,6 @@
 [project]
 name = "codeurcv"
-version = "0.5.0"
+version = "0.5.1"
 description = "A Python library to generate LaTeX resumes from YAML configuration files using Jinja2 templates."
 authors = [
     { name = "crackedngineer", email = "subhomoyrchoudhury@gmail.com" },

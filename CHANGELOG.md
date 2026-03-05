@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.5.0...codeurcv-v0.5.1) (2026-03-05)
+
+
+### Bug Fixes
+
+* Update resume template and renderer for improved variable handling and formatting ([01ce531](https://github.com/crackedngineer/codeurcv/commit/01ce531a69166962e892b18fe13652a52b8c10c8))
+
 ## [0.5.0](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.4.1...codeurcv-v0.5.0) (2026-03-05)
 
 
