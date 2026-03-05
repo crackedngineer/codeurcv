@@ -4,7 +4,7 @@ from rich.console import Console
 from importlib.metadata import version
 
 from .core.renderer import ResumeRenderer
-from .core.constants import DEFAULT_CONFIG_FILE, DEFAULT_OUT_DIR
+from .core.constants import DEFAULT_CONFIG_FILE, DEFAULT_OUT_DIR, DEFAULT_OUTPUT_FILENAME, DEFAULT_TEMPLATE
 
 app = typer.Typer(help="Generate LaTeX resumes from YAML configs.")
 console = Console()
@@ -39,19 +39,26 @@ def main(
 
 @app.command()
 def run(
-    filename: Path = typer.Option(
-        DEFAULT_CONFIG_FILE, "--file", "-f", help="Path to resume YAML config"
+    input: Path = typer.Argument(
+        DEFAULT_CONFIG_FILE, help="Path to your resume YAML or JSON"
     ),
-    out_dir: Path = typer.Option(
-        DEFAULT_OUT_DIR, "--out-dir", "-o", help="Directory to save generated resume"
+    output: Path = typer.Option(
+        DEFAULT_OUT_DIR, "--out", "-o", help="Output directory for the generated PDF"
+    ),
+    # Overrides — only needed if user wants to deviate from config values
+    name: str = typer.Option(
+        DEFAULT_OUTPUT_FILENAME, "--name", "-n", help="Override the output filename"
+    ),
+    template: str = typer.Option(
+        DEFAULT_TEMPLATE, "--template", "-t", help="Override the template defined in config"
     ),
 ):
-    """Render resume."""
+    """Render your resume from a YAML config."""
     console.print("[bold cyan]Starting resume generation...[/bold cyan]")
 
     renderer = ResumeRenderer()
 
-    renderer.render(filename, out_dir)
+    renderer.render(config_path=input, output_path=output, name=name, template=template)
 
     console.print("[bold green]Done![/bold green]")
 

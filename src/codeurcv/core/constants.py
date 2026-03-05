@@ -1,3 +1,4 @@
 DEFAULT_CONFIG_FILE = "config.yml"
 DEFAULT_TEMPLATE = "minimalist"
 DEFAULT_OUT_DIR = "output"
+DEFAULT_OUTPUT_FILENAME = "resume"

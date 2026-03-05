@@ -43,8 +43,6 @@ class Skill(ResumeSection):
     featured_skills: List[str] = Field(default_factory=list)
 
 class ResumeConfig(BaseModel):
-    template: str = DEFAULT_TEMPLATE
-    filename: str = "resume"
     basic_details: BasicDetails
     summary: Optional[str] = None
     education: List[Education] = Field(default_factory=list)

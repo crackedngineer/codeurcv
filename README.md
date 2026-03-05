@@ -157,10 +157,10 @@ jobs:
 | `classic` | All-purpose, clean single column |
 | `modern` | Tech roles, sidebar layout |
 | `academic` | Researchers, publications-focused |
-| `minimal` | Design roles, typography-forward |
+| `minimalist` | Design roles, typography-forward |
 
 ```bash
-codeurcv generate resume.yml --template modern
+codeurcv generate resume.yml --template minimalist
 ```
 
 ---
