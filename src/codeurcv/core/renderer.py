@@ -1,6 +1,5 @@
 import tempfile
 import shutil
-import yaml
 import logging
 import subprocess
 from pathlib import Path
@@ -13,6 +12,7 @@ from codeurcv.core.schema import ResumeConfig
 from codeurcv.core.settings import console
 from codeurcv.core.dependency_checker import check_dependencies
 from codeurcv.core.constants import DEFAULT_OUTPUT_FILENAME
+from codeurcv.core.config_loader import load_config
 
 class ResumeRenderer:
     def __init__(self):
@@ -31,7 +31,7 @@ class ResumeRenderer:
             # STEP 1
             raw_data = self._step(
                 "Configuration loaded",
-                lambda: yaml.safe_load(config_path.read_text()),
+                lambda: load_config(config_path),
             )
 
             # STEP 2
