@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.5.1...codeurcv-v0.5.2) (2026-03-07)
+
+
+### Bug Fixes
+
+* Update .gitignore and improve project link formatting in LaTeX template ([fc13c7a](https://github.com/crackedngineer/codeurcv/commit/fc13c7a7c286900092c8fc75affd0326b53e92d8))
+
 ## [0.5.1](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.5.0...codeurcv-v0.5.1) (2026-03-05)
 
 
