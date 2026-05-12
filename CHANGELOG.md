@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.6.0...codeurcv-v0.6.1) (2026-05-12)
+
+
+### Documentation
+
+* update README with new features and improved examples ([0b47d07](https://github.com/crackedngineer/codeurcv/commit/0b47d076e27edc5bfe628b5abc977a1a7adb0d92))
+
 ## [0.6.0](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.5.2...codeurcv-v0.6.0) (2026-05-12)
 
 
