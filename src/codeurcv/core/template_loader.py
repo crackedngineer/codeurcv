@@ -1,5 +1,27 @@
-from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
+
+from jinja2 import Environment, FileSystemLoader
+
+_LATEX_SPECIAL = [
+    ("\\", r"\textbackslash{}"),
+    ("&", r"\&"),
+    ("%", r"\%"),
+    ("$", r"\$"),
+    ("#", r"\#"),
+    ("_", r"\_"),
+    ("^", r"\^{}"),
+    ("~", r"\~{}"),
+    ("{", r"\{"),
+    ("}", r"\}"),
+]
+
+
+def _latex_escape(s: str) -> str:
+    if not isinstance(s, str):
+        return s
+    for char, escaped in _LATEX_SPECIAL:
+        s = s.replace(char, escaped)
+    return s
 
 
 class TemplateEngine:
@@ -17,6 +39,7 @@ class TemplateEngine:
             trim_blocks=True,
             autoescape=False,
         )
+        self.env.filters["latex_escape"] = _latex_escape
 
     def render(self, template_name: str, context: dict) -> str:
         template = self.env.get_template(template_name)

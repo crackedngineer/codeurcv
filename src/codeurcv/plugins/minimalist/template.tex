@@ -106,12 +106,12 @@
 
 %----------HEADING-----------------
 \begin{center}
-    {\LARGE \textbf{\VAR{basic_details.name}}} \\[4pt]
+    {\LARGE \textbf{\VAR{basic_details.name | latex_escape}}} \\[4pt]
     \normalsize
-    \href{mailto:\VAR{basic_details.email}}{\VAR{basic_details.email}} $|$ 
-    \href{tel:\VAR{basic_details.phone}}{\VAR{basic_details.phone}} $|$ 
-    \href{\VAR{basic_details.github}}{\VAR{basic_details.github}} $|$ 
-    \href{\VAR{basic_details.linkedin}}{\VAR{basic_details.linkedin}}
+    \href{mailto:\VAR{basic_details.email}}{\VAR{basic_details.email | latex_escape}} $|$
+    \href{tel:\VAR{basic_details.phone}}{\VAR{basic_details.phone | latex_escape}} $|$
+    \href{\VAR{basic_details.github}}{\VAR{basic_details.github | latex_escape}} $|$
+    \href{\VAR{basic_details.linkedin}}{\VAR{basic_details.linkedin | latex_escape}}
 
 \end{center}
 
@@ -127,8 +127,8 @@
   \resumeSubHeadingListStart
   \BLOCK{for school in education}
     \resumeSubheading
-      { {\VAR{school.institution}} }{ {\VAR{school.location}} }
-      { {\VAR{school.degree}}; GPA: {\VAR{school.gpa}} }{ {\VAR{school.year | string}} }
+      { {\VAR{school.institution | latex_escape}} }{ {\VAR{school.location | latex_escape}} }
+      { {\VAR{school.degree | latex_escape}}; GPA: {\VAR{school.gpa | latex_escape}} }{ {\VAR{school.year | string}} }
     \BLOCK{endfor}
   \resumeSubHeadingListEnd
 
@@ -137,11 +137,11 @@
   \resumeSubHeadingListStart
   \BLOCK{for job in work}
     \resumeSubheading
-      { {\VAR{job.company}} }{ {\VAR{job.location}} }
-      { {\VAR{job.role}} }{ {\VAR{job.start}} - {\VAR{job.end}} }
+      { {\VAR{job.company | latex_escape}} }{ {\VAR{job.location | latex_escape}} }
+      { {\VAR{job.role | latex_escape}} }{ {\VAR{job.start | latex_escape}} - {\VAR{job.end | latex_escape}} }
       \resumeItemListStart
       \BLOCK{for item in job.achievements}
-            \resumeItem{ {\VAR{item | safe}} }
+            \resumeItem{ \VAR{item | safe} }
       \BLOCK{endfor}
       \resumeItem{ \technologies{\VAR{job.technologies | join(", ")}} }
       \resumeItemListEnd
@@ -154,13 +154,16 @@
 \resumeSubHeadingListStart
 \BLOCK{for proj in projects}
   \resumeProjectHeading
-    {\href{ {\VAR{proj.link}} }{ \textbf{\VAR{proj.name}} }
-    \BLOCK{if proj.technologies} $|$ \emph{{\VAR{proj.technologies | join(', ')}}} \BLOCK{endif}
+    {
+        \BLOCK{if proj.link}\href{\VAR{proj.link}}{\textbf{\VAR{proj.name | latex_escape}}}\BLOCK{else}\textbf{\VAR{proj.name | latex_escape}}\BLOCK{endif}
+        \BLOCK{if proj.technologies}
+        $|$ \emph{\VAR{proj.technologies | join(', ')}}
+        \BLOCK{endif}
     }
-    { {\VAR{proj.start}} - {\VAR{proj.end}} }
+    {\VAR{proj.start | latex_escape} -- \VAR{proj.end | latex_escape}}
   \resumeItemListStart
     \BLOCK{for item in proj.description}
-    \resumeItem{ {\VAR{item | safe}} }
+    \resumeItem{\VAR{item | safe}}
     \BLOCK{endfor}
   \resumeItemListEnd
 \BLOCK{endfor}
@@ -170,9 +173,9 @@
 \section{Technical Skills}
 \resumeSubHeadingListStart
 \BLOCK{for skill in skills}
-  \item\small 
-  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r} 
-    \textbf{ {\VAR{skill.category|capitalize}} }: { {\VAR{skill.featured | join(", ")}} } \\
+  \item\small
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{\VAR{skill.category|capitalize|latex_escape}}: {\VAR{skill.featured | join(", ")}} \\
   \end{tabular*}\vspace{-7pt}
 \BLOCK{endfor}
 \resumeSubHeadingListEnd
