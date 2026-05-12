@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.5.2...codeurcv-v0.6.0) (2026-05-12)
+
+
+### Features
+
+* add code-review-graph configuration and documentation ([d519fc1](https://github.com/crackedngineer/codeurcv/commit/d519fc11b67842c2de609321ae8b6dfff341e8fc))
+* **core:** add LaTeX escaping for special characters ([3d59a57](https://github.com/crackedngineer/codeurcv/commit/3d59a571f56d7ece0d3062589b815d1c9a02d14f))
+
 ## [0.5.2](https://github.com/crackedngineer/codeurcv/compare/codeurcv-v0.5.1...codeurcv-v0.5.2) (2026-03-07)
 
 
