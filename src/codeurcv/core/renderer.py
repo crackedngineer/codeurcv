@@ -1,75 +1,86 @@
 import tempfile
-import shutil
 import logging
-import subprocess
 from pathlib import Path
 from datetime import datetime
+
+import typst
 
 from codeurcv.core.template_loader import TemplateEngine
 from codeurcv.core.logger import setup_logger
 from codeurcv.core.plugin_loader import load_builtin_plugins
 from codeurcv.core.schema import ResumeConfig
 from codeurcv.core.settings import console
-from codeurcv.core.dependency_checker import check_dependencies
 from codeurcv.core.constants import DEFAULT_OUTPUT_FILENAME, DEFAULT_TEMPLATE
 from codeurcv.core.config_loader import load_config
+from codeurcv.core.markdown_to_typst import convert as convert_md_to_typst, _PREAMBLE as _DEFAULT_PREAMBLE
+
 
 class ResumeRenderer:
     def __init__(self):
         self.plugins = load_builtin_plugins()
-        check_dependencies()
         log_dir = Path("logs")
         log_dir.mkdir(exist_ok=True)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         self.log_file = log_dir / f"codeurcv_{timestamp}.log"
         self.logger = setup_logger(debug=False, log_file=self.log_file)
 
-    def render(self, config_path: Path, output_dir: Path, out_filename: str = DEFAULT_OUTPUT_FILENAME, template: str = DEFAULT_TEMPLATE):
+    def render(
+        self,
+        config_path: Path,
+        output_dir: Path,
+        out_filename: str = DEFAULT_OUTPUT_FILENAME,
+        template: str = DEFAULT_TEMPLATE,
+    ):
         console.print("\n[bold green]🚀 Building your resume...[/bold green]\n")
 
         try:
-            # STEP 1
             raw_data = self._step(
                 "Configuration loaded",
                 lambda: load_config(config_path),
             )
 
-            # STEP 2
             config = self._step(
                 "Data validated",
                 lambda: ResumeConfig(**raw_data),
             )
 
-            # STEP 3
             plugin = self._step(
                 f"Template applied: {template}",
                 lambda: self._get_plugin(template),
             )
 
-            # STEP 4
             data = plugin.preprocess(config)
-
             template_path = plugin.template_path()
             template_engine = TemplateEngine(template_path.parent)
 
-            rendered_tex = self._step(
-                "LaTeX rendered",
-                lambda: template_engine.render(
-                    template_path.name,
-                    data.model_dump(),
-                ),
-            )
+            if plugin.template_type() == "typ":
+                typst_content = self._step(
+                    "Typst rendered",
+                    lambda: plugin.postprocess(
+                        template_engine.render(template_path.name, data.model_dump())
+                    ),
+                )
+            else:
+                rendered_md = self._step(
+                    "Markdown rendered",
+                    lambda: template_engine.render(template_path.name, data.model_dump()),
+                )
+                custom_preamble = plugin.typst_preamble()
+                typst_content = self._step(
+                    "Typst generated",
+                    lambda: convert_md_to_typst(
+                        plugin.postprocess(rendered_md),
+                        preamble=custom_preamble or _DEFAULT_PREAMBLE,
+                    ),
+                )
 
             output_dir.mkdir(parents=True, exist_ok=True)
             with tempfile.TemporaryDirectory() as tmpdir:
                 tmp_path = Path(tmpdir)
-                tex_file = tmp_path / f"{out_filename}.tex"
-                tex_file.write_text(plugin.postprocess(rendered_tex))
+                typ_file = tmp_path / f"{out_filename}.typ"
+                typ_file.write_text(typst_content, encoding="utf-8")
 
-                self._generate_pdf(tex_file, tmp_path)
-
-                final_pdf = output_dir / f"{out_filename}.pdf"
-                shutil.copy(tmp_path / f"{out_filename}.pdf", final_pdf)
+                self._compile_pdf(typ_file, output_dir / f"{out_filename}.pdf")
 
 
             console.print("\n[bold green]✔ PDF generated[/bold green]\n")
@@ -102,37 +113,12 @@ class ResumeRenderer:
             )
         return self.plugins[template_name]
 
-    def _generate_pdf(self, tex_file: Path, output_dir: Path):
-        """
-        Runs pdflatex to generate PDF from the .tex file.
-         - Uses subprocess to call pdflatex with appropriate arguments.
-         - Captures and logs output in real-time.
-         - Raises an error if PDF generation fails.
-        """
-        command = [
-            "pdflatex",
-            "-interaction=nonstopmode",
-            "-output-directory",
-            str(output_dir),
-            str(tex_file),
-        ]
-
-        console.print(f"[bold] > Running:[/bold] {' '.join(command)}")
-        logging.info("Running command: %s", " ".join(command))
-
-        process = subprocess.Popen(
-            command,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1,
-        )
+    def _compile_pdf(self, typ_file: Path, output_pdf: Path):
+        logging.info("Compiling: %s → %s", typ_file, output_pdf)
 
         with console.status("[green]Generating PDF...[/green]", spinner="dots"):
-            stdout, _ = process.communicate()
+            compiler = typst.Compiler(str(typ_file))
+            pdf_bytes = compiler.compile()
 
-        for line in stdout.splitlines():
-            logging.info(line)
-
-        if process.returncode != 0:
-            raise RuntimeError("PDF generation failed.")
+        output_pdf.write_bytes(pdf_bytes)
+        logging.info("PDF written: %s (%d bytes)", output_pdf, len(pdf_bytes))

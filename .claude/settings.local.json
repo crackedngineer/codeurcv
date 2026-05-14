@@ -3,7 +3,13 @@
     "allow": [
       "Bash(Test-Path *)",
       "Bash(python src/codeurcv/__main__.py run sample/radware-api-security-role.yml -o sample/)",
-      "Bash(uv run *)"
+      "Bash(uv run *)",
+      "Bash(python -c ' *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(gh api *)",
+      "Bash(gh repo *)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   },
   "enableAllProjectMcpServers": true,
