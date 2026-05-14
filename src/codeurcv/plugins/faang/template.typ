@@ -47,7 +47,7 @@
   [*{{ school.institution | typst_escape }}*#h(6pt){{ school.location | typst_escape }}],
   align(right)[{{ school.year }}],
 )
-#v(-5pt)
+#v(2pt)
 #text(size: 10pt)[{{ school.degree | typst_escape }}{% if school.gpa %} — GPA: {{ school.gpa | typst_escape }}{% endif %}]
 #v(4pt)
 {% endfor %}
@@ -63,12 +63,13 @@
   [*{{ job.company | typst_escape }}*{% if job.location %} #h(6pt) #text(style: "italic")[{{ job.location | typst_escape }}]{% endif %}],
   align(right)[#text(style: "italic")[{{ job.start | typst_escape }} -- {{ job.end | typst_escape }}]],
 )
-#v(-4pt)
+#v(2pt)
 #text(style: "italic")[{{ job.role | typst_escape }}]
-#v(1pt)
+#v(3pt)
 {% for item in job.achievements %}
 - {{ item | typst_escape }}
 {% endfor %}
+#v(2pt)
 {% if job.technologies %}
 #text(size: 10pt)[*Technologies:* {{ job.technologies | join(", ") | typst_escape }}]
 {% endif %}

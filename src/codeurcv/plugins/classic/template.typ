@@ -34,14 +34,12 @@
 {% if summary %}
 // ── Summary ─────────────────────────────────────────────────────────────────
 == Summary
-
 {{ summary | typst_escape }}
-
 {% endif %}
+
 {% if education %}
 // ── Education ───────────────────────────────────────────────────────────────
 == Education
-
 {% for school in education %}
 #grid(
   columns: (1fr, auto),
@@ -49,9 +47,9 @@
   [*{{ school.institution | typst_escape }}*, #text(style: "italic")[{{ school.location | typst_escape }}]],
   align(right)[#text(fill: navy)[{{ school.year }}]],
 )
-#v(-3pt)
+#v(2pt)
 {{ school.degree | typst_escape }}{% if school.gpa %} — GPA: {{ school.gpa | typst_escape }}{% endif %}
-#v(6pt)
+#v(5pt)
 {% endfor %}
 {% endif %}
 {% if work %}
@@ -65,7 +63,7 @@
   [*{{ job.company | typst_escape }}*{% if job.location %}, #text(style: "italic")[{{ job.location | typst_escape }}]{% endif %}],
   align(right)[#text(fill: navy, style: "italic")[{{ job.start | typst_escape }} -- {{ job.end | typst_escape }}]],
 )
-#v(-2pt)
+#v(2pt)
 #text(style: "italic")[{{ job.role | typst_escape }}]
 #v(3pt)
 {% for item in job.achievements %}

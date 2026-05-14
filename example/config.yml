@@ -7,7 +7,7 @@ basic_details:
   github: github.com/janedoe
 
 summary: >
-  Full-stack engineer with 5 years of experience building scalable web applications.
+  Full-stack engineer with **5** years of experience building scalable web applications.
 
 education:
   - institution: University of California, Berkeley
@@ -31,8 +31,30 @@ work:
       - Python
       - Docker
       - AWS
+  - company: Acme Corp
+    location: San Francisco, CA
+    role: Senior Engineer
+    start: Jan 2021
+    end: Present
+    achievements:
+      - Led migration to microservices, reducing latency by 40%
+      - Mentored a team of 4 junior engineers
+    technologies:
+      - Python
+      - Docker
+      - AWS
   
 projects:
+  - name: codeurcv
+    link: "https://github.com/crackedngineer/codeurcv"
+    start: March 2026
+    end: Present
+    description:
+      - An open-source resume builder that generates LaTeX resumes from YAML input.
+      - Built with a plugin architecture for easy customization.
+    technologies:
+      - Python
+      - CI/CD
   - name: codeurcv
     link: "https://github.com/crackedngineer/codeurcv"
     start: March 2026
