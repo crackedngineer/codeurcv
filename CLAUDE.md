@@ -54,8 +54,8 @@ YAML/JSON input
 | `core/renderer.py` | Central orchestrator for the full pipeline |
 | `core/schema.py` | Pydantic models — `ResumeConfig`, sections (`BasicDetails`, `Job`, `Education`, `Project`, `Skill`) |
 | `core/config_loader.py` | Reads `.yml`/`.yaml`/`.json` input files |
-| `core/plugin_loader.py` | Discovers `TemplatePlugin` subclasses via `pkgutil.iter_modules` |
-| `core/template_loader.py` | Jinja2 environment with `\VAR{}`, `\BLOCK{}` delimiters for LaTeX compatibility |
+| `core/template_loader.py` | Discovers `TemplatePlugin` subclasses via `pkgutil.iter_modules` |
+| `core/template_engine.py` | Jinja2 environment with `\VAR{}`, `\BLOCK{}` delimiters for LaTeX compatibility |
 | `core/markdown_converter.py` | Calls `pandoc` subprocess to convert Markdown → LaTeX |
 | `core/dependency_checker.py` | Verifies `pandoc` and `pdflatex` are installed; prints platform-specific install hints |
 

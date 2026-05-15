@@ -1,10 +1,16 @@
-import typer
-from pathlib import Path
-from rich.console import Console
 from importlib.metadata import version
+from pathlib import Path
 
+import typer
+from rich.console import Console
+
+from .core.constants import (
+    DEFAULT_CONFIG_FILE,
+    DEFAULT_OUT_DIR,
+    DEFAULT_OUTPUT_FILENAME,
+    DEFAULT_TEMPLATE,
+)
 from .core.renderer import ResumeRenderer
-from .core.constants import DEFAULT_CONFIG_FILE, DEFAULT_OUT_DIR, DEFAULT_OUTPUT_FILENAME, DEFAULT_TEMPLATE
 
 app = typer.Typer(help="Generate LaTeX resumes from YAML configs.")
 console = Console()
@@ -50,7 +56,10 @@ def run(
         DEFAULT_OUTPUT_FILENAME, "--name", "-n", help="Override the output filename"
     ),
     template: str = typer.Option(
-        DEFAULT_TEMPLATE, "--template", "-t", help="Override the template defined in config"
+        DEFAULT_TEMPLATE,
+        "--template",
+        "-t",
+        help="Override the template defined in config",
     ),
 ):
     """Render your resume from a YAML config."""
@@ -58,7 +67,9 @@ def run(
 
     renderer = ResumeRenderer()
 
-    renderer.render(config_path=input, output_dir=output, out_filename=name, template=template)
+    renderer.render(
+        config_path=input, output_dir=output, out_filename=name, template=template
+    )
 
     console.print("[bold green]Done![/bold green]")
 
@@ -66,9 +77,9 @@ def run(
 @app.command()
 def templates():
     """List available resume templates."""
-    from .core.plugin_loader import load_builtin_plugins
+    from .core.template_loader import load_builtin_templates
 
-    plugins = load_builtin_plugins()
+    plugins = load_builtin_templates()
 
     console.print("\n[bold]Available Templates:[/bold]\n")
 

@@ -1,36 +1,39 @@
-import re
-from jinja2 import Environment, FileSystemLoader
-from pathlib import Path
+import importlib
+import pkgutil
+from typing import Dict
 
-_MD_ESCAPE = re.compile(r"([\\`*_\[\]])")
-_TYPST_ESCAPE = re.compile(r"([#@$<>\\])")
-
-
-def _md_escape(s: str) -> str:
-    """Escape Markdown special characters in plain-text fields."""
-    if not isinstance(s, str):
-        return s
-    return _MD_ESCAPE.sub(r"\\\1", s)
+from codeurcv.templates.base import TemplatePlugin
 
 
-def _typst_escape(s: str) -> str:
-    """Escape Typst special characters in plain-text fields used in .typ templates."""
-    if not isinstance(s, str):
-        return s
-    return _TYPST_ESCAPE.sub(r"\\\1", s)
+def load_builtin_templates() -> Dict[str, TemplatePlugin]:
+    """
+    Dynamically discover built-in template plugins.
+    """
+    plugins = {}
 
+    package = "codeurcv.templates"
 
-class TemplateEngine:
-    def __init__(self, template_dir: Path):
-        self.env = Environment(
-            loader=FileSystemLoader(template_dir),
-            trim_blocks=True,
-            lstrip_blocks=True,
-            autoescape=False,
-        )
-        self.env.filters["md_escape"] = _md_escape
-        self.env.filters["typst_escape"] = _typst_escape
+    for _, module_name, is_pkg in pkgutil.iter_modules(
+        importlib.import_module(package).__path__
+    ):
+        if not is_pkg:
+            continue
 
-    def render(self, template_name: str, context: dict) -> str:
-        template = self.env.get_template(template_name)
-        return template.render(**context)
+        try:
+            module = importlib.import_module(f"{package}.{module_name}.plugin")
+
+            for attr in dir(module):
+                obj = getattr(module, attr)
+
+                if (
+                    isinstance(obj, type)
+                    and issubclass(obj, TemplatePlugin)
+                    and obj is not TemplatePlugin
+                ):
+                    instance = obj()
+                    plugins[instance.name] = instance
+
+        except ModuleNotFoundError:
+            continue
+
+    return plugins

@@ -1,23 +1,24 @@
-import tempfile
 import logging
-from pathlib import Path
+import tempfile
 from datetime import datetime
+from pathlib import Path
 
 import typst
 
-from codeurcv.core.template_loader import TemplateEngine
+from codeurcv.core.config_loader import load_config
+from codeurcv.core.constants import DEFAULT_OUTPUT_FILENAME, DEFAULT_TEMPLATE
 from codeurcv.core.logger import setup_logger
-from codeurcv.core.plugin_loader import load_builtin_plugins
+from codeurcv.core.markdown_to_typst import _PREAMBLE as _DEFAULT_PREAMBLE
+from codeurcv.core.markdown_to_typst import convert as convert_md_to_typst
 from codeurcv.core.schema import ResumeConfig
 from codeurcv.core.settings import console
-from codeurcv.core.constants import DEFAULT_OUTPUT_FILENAME, DEFAULT_TEMPLATE
-from codeurcv.core.config_loader import load_config
-from codeurcv.core.markdown_to_typst import convert as convert_md_to_typst, _PREAMBLE as _DEFAULT_PREAMBLE
+from codeurcv.core.template_engine import TemplateEngine
+from codeurcv.core.template_loader import load_builtin_templates
 
 
 class ResumeRenderer:
     def __init__(self):
-        self.plugins = load_builtin_plugins()
+        self.plugins = load_builtin_templates()
         log_dir = Path("logs")
         log_dir.mkdir(exist_ok=True)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -63,7 +64,9 @@ class ResumeRenderer:
             else:
                 rendered_md = self._step(
                     "Markdown rendered",
-                    lambda: template_engine.render(template_path.name, data.model_dump()),
+                    lambda: template_engine.render(
+                        template_path.name, data.model_dump()
+                    ),
                 )
                 custom_preamble = plugin.typst_preamble()
                 typst_content = self._step(
@@ -81,7 +84,6 @@ class ResumeRenderer:
                 typ_file.write_text(typst_content, encoding="utf-8")
 
                 self._compile_pdf(typ_file, output_dir / f"{out_filename}.pdf")
-
 
             console.print("\n[bold green]✔ PDF generated[/bold green]\n")
             console.print("[bold green]🎉 Done![/bold green]")
@@ -120,5 +122,8 @@ class ResumeRenderer:
             compiler = typst.Compiler(str(typ_file))
             pdf_bytes = compiler.compile()
 
-        output_pdf.write_bytes(pdf_bytes)
-        logging.info("PDF written: %s (%d bytes)", output_pdf, len(pdf_bytes))
+        if pdf_bytes is None:
+            raise RuntimeError("Typst compiler returned no output")
+        data = b"".join(pdf_bytes) if isinstance(pdf_bytes, list) else pdf_bytes
+        output_pdf.write_bytes(data)
+        logging.info("PDF written: %s (%d bytes)", output_pdf, len(data))

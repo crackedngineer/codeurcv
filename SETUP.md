@@ -104,7 +104,7 @@ uv run mypy src/
 │   │       │   ├── dependency_checker.py
 │   │       │   ├── logger.py
 │   │       │   ├── markdown_converter.py
-│   │       │   ├── plugin_loader.py
+│   │       │   ├── template_loader.py
 │   │       │   ├── renderer.py
 │   │       │   ├── schema.py
 │   │       │   ├── settings.py
